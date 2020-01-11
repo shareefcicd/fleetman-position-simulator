@@ -8,7 +8,7 @@ pipeline {
      ECR_URI = "842970055596.dkr.ecr.ap-south-1.amazonaws.com/leg888"
      
      SERVICE_NAME = "fleetman-position-simulator"
-     REPOSITORY_TAG="${ECR_URI}/${SERVICE_NAME}:${BUILD_ID}"
+     REPOSITORY_TAG="${ECR_URI}:${SERVICE_NAME}:${BUILD_ID}"
    }
 
    stages {
