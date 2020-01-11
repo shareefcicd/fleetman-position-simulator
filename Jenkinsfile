@@ -26,6 +26,7 @@ pipeline {
       stage('Build and Push Image') {
          steps {
            sh 'sudo docker image build -t ${REPOSITORY_TAG} .'
+           sh '$(aws ecr get-login --no-include-email --region us-east-1)'
            sh 'sudo docker push ${REPOSITORY_TAG}'
          }
       }
