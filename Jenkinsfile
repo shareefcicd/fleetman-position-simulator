@@ -33,7 +33,7 @@ pipeline {
                  def uploadSpec = """{
                     "files": [{
                        "pattern": "workspace/target/*.war",
-                       "target": "repooo/"
+                       "target": "artart/"
                     }]
                  }"""
 
