@@ -32,7 +32,7 @@ pipeline {
                  def server = Artifactory.server 'ARTIFACTORY_SERVER'
                  def uploadSpec = """{
                     "files": [{
-                       "pattern": "workspace/target/*.war",
+                       "pattern": "workspace/target/*.jar",
                        "target": "artart/"
                     }]
                  }"""
