@@ -32,16 +32,30 @@ pipeline {
               id: 'ARTIFACTORY_SERVER',
               url: 'http://3.88.42.130:8040/artifactory',
     
-     //    username: 'admin',
-     //     password: 'password'
+           username: 'admin',
+          password: 'password'
     // If you're using Credentials ID:
-             credentialsId: 'artifactup'
+        //     credentialsId: 'artifactup'
     // If Jenkins is configured to use an http proxy, you can bypass the proxy when using this Artifactory server:
         // bypassProxy: true
     // Configure the connection timeout (in seconds).
     // The default value (if not configured) is 300 seconds:
       //    timeout = 300
           )
+              
+              rtDownload (
+               serverId: 'ARTIFACTORY_SERVER',
+                 spec: '''{
+                 "files": [
+                     {
+                     "pattern": "artart/",
+                     "target": "workspace/target/*.jar"
+                  }
+                ]
+              }''',
+             buildName: 'build',
+             buildNumber: '42'
+        )
                
             rtUpload (
              serverId: 'ARTIFACTORY_SERVER',
@@ -54,7 +68,7 @@ pipeline {
            ]
           }''',
  
-        buildName: '*',
+        buildName: 'build',
         buildNumber: '42'
      )
     }   
