@@ -32,8 +32,8 @@ pipeline {
               id: 'ARTIFACTORY_SERVER',
               url: 'http://3.88.42.130:8040/artifactory',
     
-           username: 'admin',
-          password: 'password'
+              username: 'admin',
+              password: 'password'
     // If you're using Credentials ID:
         //     credentialsId: 'artifactup'
     // If Jenkins is configured to use an http proxy, you can bypass the proxy when using this Artifactory server:
@@ -45,9 +45,9 @@ pipeline {
               
               rtDownload (
                serverId: 'ARTIFACTORY_SERVER',
-                 spec: '''{
+               spec: '''{
                  "files": [
-                     {
+                  {
                      "pattern": "artart/",
                      "target": "workspace/target/*.jar"
                   }
@@ -61,10 +61,10 @@ pipeline {
              serverId: 'ARTIFACTORY_SERVER',
              spec: '''{
               "files": [
-              {
+               {
                  "pattern": "artart/",
                  "target": "/target/${SERVICE_NAME}*.jar"
-                 }
+               }
            ]
           }''',
  
