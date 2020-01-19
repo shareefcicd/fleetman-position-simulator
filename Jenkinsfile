@@ -28,19 +28,19 @@ pipeline {
   
        stage('artifactory') {
            steps {  
-           rtServer ( 
-          id: 'ARTIFACTORY_SERVER',
-          url: 'http://3.88.42.130:8040/artifactory',
+            rtServer ( 
+              id: 'ARTIFACTORY_SERVER',
+              url: 'http://3.88.42.130:8040/artifactory',
     
      //    username: 'admin',
      //     password: 'password'
     // If you're using Credentials ID:
-         credentialsId: 'artifactup'
+             credentialsId: 'artifactup'
     // If Jenkins is configured to use an http proxy, you can bypass the proxy when using this Artifactory server:
         // bypassProxy: true
     // Configure the connection timeout (in seconds).
     // The default value (if not configured) is 300 seconds:
-          timeout = 300
+      //    timeout = 300
           )
                
             rtUpload (
