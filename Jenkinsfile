@@ -25,6 +25,17 @@ pipeline {
          }
       }
       
+      stage('usernamePassword') {
+      steps {
+        script {
+          withCredentials([
+            usernamePassword(credentialsId: 'artifactup',
+              usernameVariable: 'username',
+              passwordVariable: 'password')
+          ]) 
+        }
+      }
+    }
 
         stage ('Artifactory configuration') {
             steps {
