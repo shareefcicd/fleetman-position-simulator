@@ -27,21 +27,23 @@ pipeline {
 
   
         stage('upload') {
-           steps {
-              script { 
-                 def server = Artifactory.server 'ARTIFACTORY_SERVER'
-                 def uploadSpec = """{
-                    "files": [{
-                       "pattern": "workspace/target/*.jar",
-                       "target": "artart/"
-                    }]
-                 }"""
-
-                 server.upload(uploadSpec) 
-               }
-            }
-        }
-
+           steps {      
+            rtUpload (
+             serverId: 'ARTIFACTORY_SERVER',
+             spec: '''{
+              "files": [
+              {
+                 "pattern": "artart/",
+                 "target": "workspace/target/*.jar"
+                 }
+           ]
+          }''',
+ 
+        buildName: '*',
+        buildNumber: '42'
+     )
+    }   
+  }
      
       stage('Build and Push Image') {
          steps {
