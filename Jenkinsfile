@@ -63,7 +63,7 @@ pipeline {
               "files": [
               {
                  "pattern": "artart/",
-                 "target": "workspace/target/*.jar"
+                 "target": "/target/${SERVICE_NAME}*.jar"
                  }
            ]
           }''',
