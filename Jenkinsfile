@@ -24,63 +24,25 @@ pipeline {
             sh '''mvn clean package'''
          }
       }
-      
-      stage('usernamePassword') {
-      steps {
-        script {
-          withCredentials([
-            usernamePassword(credentialsId: 'artifactup',
-              usernameVariable: 'username',
-              passwordVariable: 'password')
-          ]) 
-        }
-      }
-    }
 
-        stage ('Artifactory configuration') {
-            steps {
-                rtServer (
-                    id: "ARTIFACTORY_SERVER",
-                    url: SERVER_URL,
-                    credentialsId: artifactup
-                )
+  
+        stage('upload') {
+           steps {
+              script { 
+                 def server = Artifactory.server 'ARTIFACTORY_SERVER'
+                 def uploadSpec = """{
+                    "files": [{
+                       "pattern": "workspace/target/*.war",
+                       "target": "repooo/"
+                    }]
+                 }"""
 
-                rtMavenDeployer (
-                    id: "MAVEN_DEPLOYER",
-                    serverId: "ARTIFACTORY_SERVER",
-                    releaseRepo: "repooo",
-                    snapshotRepo: "repooo"
-                )
-
-                rtMavenResolver (
-                    id: "MAVEN_RESOLVER",
-                    serverId: "ARTIFACTORY_SERVER",
-                    releaseRepo: "repooo",
-                    snapshotRepo: "repooo"
-                )
+                 server.upload(uploadSpec) 
+               }
             }
         }
 
-        stage ('Exec Maven') {
-            steps {
-                rtMavenRun (
-                    tool: maven, // Tool name from Jenkins configuration
-                    pom: '${SERVICE_NAME}/pom.xml',
-                    goals: 'clean install',
-                    deployerId: "MAVEN_DEPLOYER",
-                    resolverId: "MAVEN_RESOLVER"
-                )
-            }
-        }
-
-        stage ('Publish build info') {
-            steps {
-                rtPublishBuildInfo (
-                    serverId: "ARTIFACTORY_SERVER"
-                )
-            }
-        }
-
+     
       stage('Build and Push Image') {
          steps {
            sh 'sudo docker image build -t ${REPOSITORY_TAG} .'
