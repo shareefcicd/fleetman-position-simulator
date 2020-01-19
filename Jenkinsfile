@@ -5,7 +5,7 @@ pipeline {
      // You must set the following environment variables
      // ORGANIZATION_NAME
      // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one)
-     SERVER_URL = "http://172.31.31.26:8040/artifactory"
+     
      ECR_URI = "842970055596.dkr.ecr.us-east-1.amazonaws.com/leg888"
      
      SERVICE_NAME = "fleetman-position-simulator"
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
-                    url: ${SERVER_URL},
+                    url: SERVER_URL,
                     credentialsId: artifactup
                 )
 
