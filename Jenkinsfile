@@ -30,7 +30,7 @@ pipeline {
            steps {  
             rtServer ( 
               id: 'ARTIFACTORY_SERVER',
-              url: 'http://3.88.42.130:8040/artifactory',
+              url: 'http://172.31.31.26:8040/artifactory',
     
               username: 'admin',
               password: 'password'
@@ -43,19 +43,6 @@ pipeline {
       //    timeout = 300
           )
               
-              rtDownload (
-               serverId: 'ARTIFACTORY_SERVER',
-               spec: '''{
-                 "files": [
-                  {
-                     "pattern": "artart/",
-                     "target": "workspace/target/eetman-position-simulator_master/target/*.jar"
-                  }
-                ]
-              }''',
-             buildName: 'build',
-             buildNumber: '42'
-        )
                
             rtUpload (
              serverId: 'ARTIFACTORY_SERVER',
@@ -63,7 +50,7 @@ pipeline {
               "files": [
                {
                  "pattern": "artart/",
-                 "target": "workspace/target/eetman-position-simulator_master/target/*.jar"
+                 "target": "workspace/eetman-position-simulator_master/target/*.jar"
                }
            ]
           }''',
