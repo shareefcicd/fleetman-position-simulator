@@ -33,8 +33,8 @@ pipeline {
              spec: '''{
               "files": [
                {
-                 "pattern": "libs-release-local",
-                 "target": "workspace/eetman-position-simulator_master/target/*.jar"
+                 "target": "libs-release-local",
+                 "pattern": "workspace/eetman-position-simulator_master/target/*.jar"
                }
            ]
           }''',
