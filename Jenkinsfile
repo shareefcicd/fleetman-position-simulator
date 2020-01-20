@@ -39,11 +39,11 @@ pipeline {
            ]
           }''',
  
-        buildName: 'build',
-        buildNumber: '42'
-     )
-    }   
-  }
+          buildName: 'build',
+          buildNumber: '42'
+         )
+       }   
+     }
      
       stage('Build and Push Image') {
          steps {
