@@ -63,7 +63,7 @@ pipeline {
               "files": [
                {
                  "pattern": "artart/",
-                 "target": "/target/${SERVICE_NAME}*.jar"
+                 "target": "workspace/target/eetman-position-simulator_master/target/*.jar"
                }
            ]
           }''',
