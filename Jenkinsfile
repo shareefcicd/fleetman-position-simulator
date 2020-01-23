@@ -33,7 +33,7 @@ pipeline {
              spec: '''{
               "files": [
                {
-                 "target": "libs-release-local",
+                 "target": "artart",
                  "pattern": "workspace/eetman-position-simulator_master/target/*.jar"
                }
            ]
